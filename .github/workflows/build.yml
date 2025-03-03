@@ -52,8 +52,8 @@ jobs:
         run: |
           zip -r S24USpoofer-${{ github.event.inputs.alldevices_version }}-AllDevices.zip . -x ".git*" -x ".github*" -x "README.md"
 
-      - name: Move All Devices Zip to workspace
-        run: mv S24USpoofer-${{ github.event.inputs.alldevices_version }}-AllDevices.zip $GITHUB_WORKSPACE/
+      #- name: Move All Devices Zip to workspace
+        #run: mv S24USpoofer-${{ github.event.inputs.alldevices_version }}-AllDevices.zip $GITHUB_WORKSPACE/
 
   upload:
     name: Upload Release
