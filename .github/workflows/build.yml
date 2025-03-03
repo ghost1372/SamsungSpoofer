@@ -1,0 +1,84 @@
+name: Build S24USpoofer Magisk Module
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_version:
+        description: 'Release Version (e.g., V5.0.0)'
+        required: true
+        type: string
+      samsung_version:
+        description: 'Samsung Version (e.g., V4.0.0)'
+        required: true
+        type: string
+      alldevices_version:
+        description: 'All Devices Version (e.g., V5.0.0)'
+        required: true
+        type: string
+      release_description:
+        description: 'Enter the release description (Changelog for both versions)'
+        required: true
+        type: string
+
+jobs:
+  build:
+    name: Build Samsung & All Devices
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout samsung branch
+        uses: actions/checkout@v3
+        with:
+          ref: samsung
+
+      - name: Print Current Branch
+        run: git branch --show-current
+
+      - name: Create Samsung Zip
+        run: |
+          zip -r S24USpoofer-${{ github.event.inputs.samsung_version }}-SamsungOnly.zip . -x ".git*" -x ".github*" -x "README.md"
+
+      - name: Move Samsung Zip to workspace
+        run: mv S24USpoofer-${{ github.event.inputs.samsung_version }}-SamsungOnly.zip $GITHUB_WORKSPACE/
+
+      - name: Checkout alldevices branch
+        uses: actions/checkout@v3
+        with:
+          ref: alldevices
+
+      - name: Print Current Branch
+        run: git branch --show-current
+
+      - name: Create All Devices Zip
+        run: |
+          zip -r S24USpoofer-${{ github.event.inputs.alldevices_version }}-AllDevices.zip . -x ".git*" -x ".github*" -x "README.md"
+
+      - name: Move All Devices Zip to workspace
+        run: mv S24USpoofer-${{ github.event.inputs.alldevices_version }}-AllDevices.zip $GITHUB_WORKSPACE/
+
+  upload:
+    name: Upload Release
+    runs-on: ubuntu-20.04
+    needs: build
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Create a single tag for the release
+        run: |
+          git tag ${{ github.event.inputs.release_version }}
+          git push origin ${{ github.event.inputs.release_version }}
+
+      - name: Upload Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            S24USpoofer-${{ github.event.inputs.samsung_version }}-SamsungOnly.zip
+            S24USpoofer-${{ github.event.inputs.alldevices_version }}-AllDevices.zip
+          tag_name: ${{ github.event.inputs.release_version }}
+          release_name: S24 Ultra Spoofer Module ${{ github.event.inputs.release_version }}
+          body: |
+            # S24 Ultra Spoofer Module - ${{ github.event.inputs.release_version }}
+            _${{ github.event.inputs.samsung_version }} - For SamsungOnly Version_
+            _${{ github.event.inputs.alldevices_version }} - For AllDevices Version_
+
+            ${{ github.event.inputs.release_description }}
