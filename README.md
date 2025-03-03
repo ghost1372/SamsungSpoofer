@@ -30,4 +30,4 @@ A **Magisk Module** that improves system performance, enhances gaming, and unloc
 
 ---
 
-📥 **[Download the Latest Release Here](https://github.com/mrx7014/releases/latest)**
+📥 **[Download the Latest Release Here](https://github.com/mrx7014/releases)**
