@@ -15,8 +15,20 @@ on:
         description: 'All Devices Version (e.g., V5.0.0)'
         required: true
         type: string
-      release_description:
-        description: 'Enter the release description (Changelog for both versions)'
+      changelog_samsung_head:
+        description: 'Enter Changelog Samsung Head'
+        required: true
+        type: string
+      changelog_samsung_body:
+        description: 'Enter Changelog Samsung Body'
+        required: true
+        type: string
+      changelog_alldevices_head:
+        description: 'Enter Changelog AllDevices Head'
+        required: true
+        type: string
+      changelog_alldevices_body:
+        description: 'Enter Changelog AllDevices Body'
         required: true
         type: string
 
@@ -30,38 +42,45 @@ jobs:
         with:
           ref: samsung
 
-      - name: Print Current Branch
-        run: git branch --show-current
-
       - name: Create Samsung Zip
         run: |
           zip -r S24USpoofer-${{ github.event.inputs.samsung_version }}-SamsungOnly.zip . -x ".git*" -x ".github*" -x "README.md"
 
-      #- name: Move Samsung Zip to workspace
-        #run: mv S24USpoofer-${{ github.event.inputs.samsung_version }}-SamsungOnly.zip $GITHUB_WORKSPACE/
+      - name: Upload Samsung Zip as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: S24USpoofer-SamsungOnly
+          path: S24USpoofer-${{ github.event.inputs.samsung_version }}-SamsungOnly.zip
 
       - name: Checkout alldevices branch
         uses: actions/checkout@v3
         with:
           ref: alldevices
 
-      - name: Print Current Branch
-        run: git branch --show-current
-
       - name: Create All Devices Zip
         run: |
           zip -r S24USpoofer-${{ github.event.inputs.alldevices_version }}-AllDevices.zip . -x ".git*" -x ".github*" -x "README.md"
 
-      #- name: Move All Devices Zip to workspace
-        #run: mv S24USpoofer-${{ github.event.inputs.alldevices_version }}-AllDevices.zip $GITHUB_WORKSPACE/
+      - name: Upload All Devices Zip as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: S24USpoofer-AllDevices
+          path: S24USpoofer-${{ github.event.inputs.alldevices_version }}-AllDevices.zip
 
   upload:
     name: Upload Release
     runs-on: ubuntu-20.04
     needs: build
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - name: Download Samsung Zip
+        uses: actions/download-artifact@v3
+        with:
+          name: S24USpoofer-SamsungOnly
+
+      - name: Download All Devices Zip
+        uses: actions/download-artifact@v3
+        with:
+          name: S24USpoofer-AllDevices
 
       - name: Create a single tag for the release
         run: |
@@ -78,7 +97,12 @@ jobs:
           release_name: S24 Ultra Spoofer Module ${{ github.event.inputs.release_version }}
           body: |
             # S24 Ultra Spoofer Module - ${{ github.event.inputs.release_version }}
+
             _${{ github.event.inputs.samsung_version }} - For SamsungOnly Version_
             _${{ github.event.inputs.alldevices_version }} - For AllDevices Version_
 
-            ${{ github.event.inputs.release_description }}
+            ${{ github.event.inputs.changelog_samsung_head }}
+            ${{ github.event.inputs.changelog_samsung_body }}
+
+            ${{ github.event.inputs.changelog_alldevices_head }}
+            ${{ github.event.inputs.changelog_alldevices_body }}
