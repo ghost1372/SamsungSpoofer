@@ -1,108 +1,78 @@
-name: Build S24USpoofer Magisk Module
+name: Build S24U Spoofer Magisk Module
 
 on:
   workflow_dispatch:
     inputs:
-      release_version:
-        description: 'Release Version (e.g., V5.0.0)'
-        required: true
-        type: string
       samsung_version:
-        description: 'Samsung Version (e.g., V4.0.0)'
+        description: 'Samsung Version (e.g., V4.1.0)'
         required: true
         type: string
       alldevices_version:
-        description: 'All Devices Version (e.g., V5.0.0)'
+        description: 'AllDevices Version (e.g., V5.0.0)'
         required: true
         type: string
-      changelog_samsung_head:
-        description: 'Enter Changelog Samsung Head'
+      changelog_head:
+        description: 'Changelog Header (e.g., ## Changelog Samsung Version:)'
         required: true
         type: string
-      changelog_samsung_body:
-        description: 'Enter Changelog Samsung Body'
-        required: true
-        type: string
-      changelog_alldevices_head:
-        description: 'Enter Changelog AllDevices Head'
-        required: true
-        type: string
-      changelog_alldevices_body:
-        description: 'Enter Changelog AllDevices Body'
+      changelog_body:
+        description: 'Changelog Body (e.g., - Updated firmware)'
         required: true
         type: string
 
 jobs:
   build:
-    name: Build Samsung & All Devices
+    name: Build S24U Spoofer Module
     runs-on: ubuntu-20.04
     steps:
-      - name: Checkout samsung branch
-        uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
         with:
-          ref: samsung
+          fetch-depth: 0
 
-      - name: Create Samsung Zip
+      - name: Build Samsung Version
         run: |
           zip -r S24USpoofer-${{ github.event.inputs.samsung_version }}-SamsungOnly.zip . -x ".git*" -x ".github*" -x "README.md"
 
-      - name: Upload Samsung Zip as artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: S24USpoofer-SamsungOnly
-          path: S24USpoofer-${{ github.event.inputs.samsung_version }}-SamsungOnly.zip
-
-      - name: Checkout alldevices branch
-        uses: actions/checkout@v3
-        with:
-          ref: alldevices
-
-      - name: Create All Devices Zip
+      - name: Build AllDevices Version
         run: |
           zip -r S24USpoofer-${{ github.event.inputs.alldevices_version }}-AllDevices.zip . -x ".git*" -x ".github*" -x "README.md"
 
-      - name: Upload All Devices Zip as artifact
+      - name: Create a Git Tag
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git tag ${{ github.event.inputs.samsung_version }}-${{ github.event.inputs.alldevices_version }}
+          git push origin ${{ github.event.inputs.samsung_version }}-${{ github.event.inputs.alldevices_version }}
+
+      - name: Upload Files
         uses: actions/upload-artifact@v4
         with:
-          name: S24USpoofer-AllDevices
-          path: S24USpoofer-${{ github.event.inputs.alldevices_version }}-AllDevices.zip
+          name: S24U-Spoofer
+          path: |
+            S24USpoofer-${{ github.event.inputs.samsung_version }}-SamsungOnly.zip
+            S24USpoofer-${{ github.event.inputs.alldevices_version }}-AllDevices.zip
 
-  upload:
-    name: Upload Release
-    runs-on: ubuntu-20.04
-    needs: build
-    steps:
-      - name: Download Samsung Zip
-        uses: actions/download-artifact@v4
-        with:
-          name: S24USpoofer-SamsungOnly
-
-      - name: Download All Devices Zip
-        uses: actions/download-artifact@v4
-        with:
-          name: S24USpoofer-AllDevices
-
-      - name: Create a single tag for the release
-        run: |
-          git tag ${{ github.event.inputs.release_version }}
-          git push origin ${{ github.event.inputs.release_version }}
-
-      - name: Upload Release
+      - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
           files: |
             S24USpoofer-${{ github.event.inputs.samsung_version }}-SamsungOnly.zip
             S24USpoofer-${{ github.event.inputs.alldevices_version }}-AllDevices.zip
-          tag_name: ${{ github.event.inputs.release_version }}
-          release_name: S24 Ultra Spoofer Module ${{ github.event.inputs.release_version }}
+          tag_name: ${{ github.event.inputs.samsung_version }}-${{ github.event.inputs.alldevices_version }}
+          release_name: S24U Spoofer Module
           body: |
-            # S24 Ultra Spoofer Module - ${{ github.event.inputs.release_version }}
+            # S24 Ultra Spoofer Magisk Module  
 
-            _${{ github.event.inputs.samsung_version }} - For SamsungOnly Version_
-            _${{ github.event.inputs.alldevices_version }} - For AllDevices Version_
+            🔹 **Samsung Version:** `${{ github.event.inputs.samsung_version }}`  
+            🔹 **AllDevices Version:** `${{ github.event.inputs.alldevices_version }}`  
 
-            ${{ github.event.inputs.changelog_samsung_head }}
-            ${{ github.event.inputs.changelog_samsung_body }}
+            ${{ github.event.inputs.changelog_head }}
 
-            ${{ github.event.inputs.changelog_alldevices_head }}
-            ${{ github.event.inputs.changelog_alldevices_body }}
+            ${{ github.event.inputs.changelog_body }}
+
+            ## ⚠️ Notes  
+            - If your device **is not a Samsung**, use the **AllDevices** version.  
+            - Remove any previous modifications before installing to avoid conflicts.  
+
+            📥 **[Download the Latest Release Here](https://github.com/YOUR_REPO/releases/latest)**
