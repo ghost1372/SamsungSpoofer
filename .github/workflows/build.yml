@@ -94,6 +94,4 @@ jobs:
 
             ## ⚠️ Notes  
             - If your device **is not a Samsung**, use the **AllDevices** version.  
-            - Remove any previous modifications before installing to avoid conflicts.  
-
-            📥 **[Download the Latest Release Here](https://github.com/YOUR_REPO/releases/latest)**
+            - Remove any previous modifications before installing to avoid conflicts.
