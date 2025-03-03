@@ -37,8 +37,8 @@ jobs:
         run: |
           zip -r S24USpoofer-${{ github.event.inputs.samsung_version }}-SamsungOnly.zip . -x ".git*" -x ".github*" -x "README.md"
 
-      - name: Move Samsung Zip to workspace
-        run: mv S24USpoofer-${{ github.event.inputs.samsung_version }}-SamsungOnly.zip $GITHUB_WORKSPACE/
+      #- name: Move Samsung Zip to workspace
+        #run: mv S24USpoofer-${{ github.event.inputs.samsung_version }}-SamsungOnly.zip $GITHUB_WORKSPACE/
 
       - name: Checkout alldevices branch
         uses: actions/checkout@v3
