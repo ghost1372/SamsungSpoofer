@@ -11,12 +11,20 @@ on:
         description: 'AllDevices Version (e.g., V5.0.0)'
         required: true
         type: string
-      changelog_head:
-        description: 'Changelog Header (e.g., ## Changelog Samsung Version:)'
+      samsung_changelog_head:
+        description: 'Samsung Changelog Header (e.g., ## Changelog Samsung Version:)'
         required: true
         type: string
-      changelog_body:
-        description: 'Changelog Body (e.g., - Updated firmware)'
+      samsung_changelog_body:
+        description: 'Samsung Changelog Body (e.g., - Updated firmware)'
+        required: true
+        type: string
+      alldevices_changelog_head:
+        description: 'AllDevices Changelog Header (e.g., ## Changelog AllDevices Version:)'
+        required: true
+        type: string
+      alldevices_changelog_body:
+        description: 'AllDevices Changelog Body (e.g., - Performance improvements)'
         required: true
         type: string
 
@@ -67,9 +75,13 @@ jobs:
             🔹 **Samsung Version:** `${{ github.event.inputs.samsung_version }}`  
             🔹 **AllDevices Version:** `${{ github.event.inputs.alldevices_version }}`  
 
-            ${{ github.event.inputs.changelog_head }}
+            ${{ github.event.inputs.samsung_changelog_head }}
 
-            ${{ github.event.inputs.changelog_body }}
+            ${{ github.event.inputs.samsung_changelog_body }}
+
+            ${{ github.event.inputs.alldevices_changelog_head }}
+
+            ${{ github.event.inputs.alldevices_changelog_body }}
 
             ## ⚠️ Notes  
             - If your device **is not a Samsung**, use the **AllDevices** version.  
