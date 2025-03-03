@@ -33,18 +33,27 @@ jobs:
     name: Build S24U Spoofer Module
     runs-on: ubuntu-20.04
     steps:
-      - name: Checkout repository
+      - name: Checkout repository (Samsung Branch)
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          ref: samsung
+          path: samsung_branch
+
+      - name: Checkout repository (AllDevices Branch)
+        uses: actions/checkout@v4
+        with:
+          ref: alldevices
+          path: alldevices_branch
 
       - name: Build Samsung Version
         run: |
-          zip -r S24USpoofer-${{ github.event.inputs.samsung_version }}-SamsungOnly.zip . -x ".git*" -x ".github*" -x "README.md"
+          cd samsung_branch
+          zip -r ../S24USpoofer-${{ github.event.inputs.samsung_version }}-SamsungOnly.zip . -x ".git*" -x ".github*" -x "README.md"
 
       - name: Build AllDevices Version
         run: |
-          zip -r S24USpoofer-${{ github.event.inputs.alldevices_version }}-AllDevices.zip . -x ".git*" -x ".github*" -x "README.md"
+          cd alldevices_branch
+          zip -r ../S24USpoofer-${{ github.event.inputs.alldevices_version }}-AllDevices.zip . -x ".git*" -x ".github*" -x "README.md"
 
       - name: Create a Git Tag
         run: |
