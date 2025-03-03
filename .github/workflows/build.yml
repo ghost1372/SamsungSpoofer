@@ -47,7 +47,7 @@ jobs:
           zip -r S24USpoofer-${{ github.event.inputs.samsung_version }}-SamsungOnly.zip . -x ".git*" -x ".github*" -x "README.md"
 
       - name: Upload Samsung Zip as artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: S24USpoofer-SamsungOnly
           path: S24USpoofer-${{ github.event.inputs.samsung_version }}-SamsungOnly.zip
