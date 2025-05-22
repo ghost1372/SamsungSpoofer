@@ -5,3 +5,4 @@ ui_print "┃ By: MRX7014                                                       
 ui_print "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"
 sleep 3
 ui_print "✨ Done, Enjoy, Don't forget to join MRX7014 Cloud"
+am start -a android.intent.action.VIEW -d "https://t.me/mrx7014cloud"
