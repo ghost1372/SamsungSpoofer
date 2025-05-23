@@ -3,5 +3,5 @@ ui_print "┃ Spoof Your Device To S24 Ultra Spoofer [S928BXXU4BYD9] (OneUI 7.0)
 ui_print "┃ v5.0.0 - Samsung Only                                              ┃"
 ui_print "┃ By: MRX7014                                                        ┃"
 ui_print "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"
-sleep 3
-ui_print "✨ Done, Enjoy, Don't forget to join MRX7014 Cloud"
+ui_print "✨ Don't forget to join MRX7014 Cloud!"
+am start -a android.intent.action.VIEW -d "https://t.me/mrx7014cloud"
