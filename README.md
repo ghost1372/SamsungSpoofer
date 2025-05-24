@@ -3,17 +3,19 @@
 ## 📌 What is S24 Ultra Spoofer?  
 A **Magisk Module** that improves system performance, enhances gaming, and unlocks additional features for both Samsung and non-Samsung devices.
 
-## ⚠️ Notes  
-- If your device **is not a Samsung**, use the **AllDevices** version.  
-- Remove any previous modifications before installing to avoid conflicts.  
+## Note
+> [!CAUTION] 
+> If your device **is not a Samsung device**, use the **AllDevices** version.  
+> Remove any other spoofing modules to avoid conflicts
 
 ## ⚙️ Installation Guide  
-1. Ensure **Magisk** is installed on your device.  
-2. Download the appropriate version:  
-   - **SamsungOnly**
-   - **AllDevices**  
-3. Open **Magisk Manager** > Go to "Modules" > Tap "+" > Select the downloaded file.  
-4. Wait for the installation to complete, then reboot your device.  
+> [!TIP]
+> 1. Ensure **Magisk** is installed on your device.  
+> 2. Download the appropriate version:  
+> - **SamsungOnly**
+> - **AllDevices**  
+> 3. Open **Magisk Manager** > Go to "Modules" > Tap "+" > Select the downloaded file.  
+> 4. Wait for the installation to complete, then reboot your device.  
 
 ---
 
