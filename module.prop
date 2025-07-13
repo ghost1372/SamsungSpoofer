@@ -1,7 +1,7 @@
 id=S24U_Spoofer
 name=S24 Ultra Spoofer - SamsungVersion
-version=v5.2.0
-versionCode=520
+version=v5.3.0
+versionCode=530
 author=MRX7014
 description=Spoof your device to S24Ultra [S928BXXU4BYD9] (OneUI 7.0 - Android 15)
 updateJson=https://raw.githubusercontent.com/MRX7014/S24Ultra-Spoofer/samsung/update.json
