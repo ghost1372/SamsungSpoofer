@@ -1,24 +1,26 @@
-# S24 Ultra Spoofer Magisk Module  
+# SamsungSpoofer Modules
 
-## 📌 What is S24 Ultra Spoofer?  
-A **Magisk Module** that improves system performance, enhances gaming, and unlocks additional features for both Samsung and non-Samsung devices.
+## 📌 What is SamsubgSpoofer?  
+A **Magisk Modules** that spoofs your device as S24U,S25U, or TabS10Ultra to unlock exclusive features.
 
 ## Note
-> [!CAUTION] 
-> If your device **is not a Samsung device**, use the **AllDevices** version.  
+- Supports All Android Versions and All Android Devices
+- Supports All Root Manager (Magisk, KSU, KSU-Next, and APatch)
+> [!CAUTION]
 > Remove any other spoofing modules to avoid conflicts
 
 ## ⚙️ Installation Guide  
 > [!TIP]
-> 1. Ensure **Magisk** is installed on your device.  
-> 2. Download the appropriate version:  
-> - **SamsungOnly**
-> - **AllDevices**  
+> 1. Ensure **Magisk, KSU, KSU-Next, APatch** is installed on your device.  
+> 2. Download the spoofer you want:  
+> - **S24USpoofer**
+> - **S25USpoofer**  
+> - **TabS10UltraSpoofer**
 > 3. Open **Magisk Manager** > Go to "Modules" > Tap "+" > Select the downloaded file.  
 > 4. Wait for the installation to complete, then reboot your device.  
 
 ---
 
-📥 **[Download the Latest Release Here](https://github.com/mrx7014/S24Ultra-Spoofer/releases)**
+📥 **[Download the Latest Release Here](https://github.com/mrx7014/SamsungSpoofer/releases)**
 
 ☁️ **[Join MRX7014 Cloud](https://t.me/mrx7014cloud)**

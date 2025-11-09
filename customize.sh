@@ -1,6 +1,0 @@
-ui_print "S24 Ultra Spoofer"
-ui_print "Spoof Your Device To S24 Ultra Spoofer [S928BXXU4BYD9] (OneUI 7.0)"
-ui_print "v5.3.0 - Samsung Only"
-ui_print "By: MRX7014"
-ui_print "✨ Don't forget to join MRX7014 Cloud!"
-am start -a android.intent.action.VIEW -d "https://t.me/mrx7014cloud"
