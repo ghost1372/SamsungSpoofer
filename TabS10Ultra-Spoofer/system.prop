@@ -1,7 +1,17 @@
+# Don't Use Without Permissions ©
 ro.product.device=gts10u
+ro.product.system.brand=Samsung
+ro.product.system.manufacturer=Samsung
+ro.product.product.manufacturer=Samsung
+ro.system.manufacturer=Samsung
 ro.product.model=SM-X926B
-ro.product.name=gts10u
+ro.product.name=Samsung Tab S10 Ultra
 ro.product.product.device=gts10u
 ro.product.product.model=SM-X926B
-ro.product.product.name=gts10u
-ro.build.display.id=UP1A.231005.007.X926BXXU2AXL1.MRX7014
+ro.product.brand=Samsung
+ro.product.product.name=Samsung Tab S10 Ultra
+ro.product.brand_for_attestation=samsung
+ro.product.device_for_attestation=gts10u
+ro.product.manufacturer_for_attestation=Samsung
+ro.product.model_for_attestation=SM-X926B
+ro.product.name_for_attestation=Samsung Tab S10 Ultra

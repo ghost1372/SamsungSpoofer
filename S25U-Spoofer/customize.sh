@@ -1,6 +1,6 @@
 ui_print "S25Ultra Spoofer"
 ui_print "Spoof Your Device To S25 Ultra Spoofer"
-ui_print "v7.0.0"
+ui_print "v7.1.0"
 ui_print "By: MRX7014"
 ui_print "Don't forget to join MRX7014 Cloud!"
 sleep 3
